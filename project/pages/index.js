@@ -2,7 +2,16 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 
-export default function Home() {
+const Home = ({ profile_data, error }) => {
+
+  if (error) {
+    return <div>An error occured: {error.message}</div>
+  }
+
+  if (!profile_data) {
+    return <div>No profile data</div>
+  }
+
   return (
     <>
       <Head>
@@ -20,7 +29,6 @@ export default function Home() {
             }}>
             <span id="blackOverlay"
               className="w-full h-full absolute opacity-50 bg-black">
-
             </span>
           </div>
           <div
@@ -57,34 +65,36 @@ export default function Home() {
                   </div>
                 </div>
                 <div className="text-center mt-12">
-                  <h3 className="text-4xl font-semibold leading-normal mb-2 text-gray-800 mb-2">
-                    0xBalam
+                  <h3 className="text-4xl font-semibold leading-normal mb-2 text-gray-800 mb-2"> {" "}
+                    {profile_data.username}
                   </h3>
                   <div className="text-sm leading-normal mt-0 mb-2 text-gray-500 font-bold uppercase">
                     <i className="fas fa-map-marker-alt mr-2 text-lg text-gray-500"></i>{" "}
-                    Web2/Web3 Developer
+                    {profile_data.profession}
                   </div>
                   <div className="mb-2 text-gray-700 mt-10">
                     <i className="fas fa-briefcase mr-2 text-lg text-gray-500"></i>
-                    Membership: Doge Capital | Famous Foxes Federation | Dazed Ducks
+                    {profile_data.membership}
                   </div>
                   <div className="mb-2 text-gray-700">
                     <i className="fas fa-university mr-2 text-lg text-gray-500"></i>
-                    Blockchains: Solana
+                    {profile_data.blockchains}
                   </div>
                 </div>
                 <div className="mt-10 py-10 border-t border-gray-300 text-center">
                   <div className="flex flex-wrap justify-center">
                     <div className="w-full lg:w-9/12 px-4">
                       <p className="mb-4 text-lg leading-relaxed text-gray-800">
-                        <span className="font-normal text-pink-500">Summary</span>: Experience software developer with a passion for security.
-                        Recently started developing Solana programs to get my feet wet on blockchain development.
+                        <span className="font-normal text-pink-500">Summary</span>: {" "}
+                        {profile_data.summary}
                       </p>
                       <p className="mb-4 text-lg leading-relaxed text-gray-800">
-                        <span className="font-normal text-pink-500">Languages</span>: C/C++, Python, Rust
+                        <span className="font-normal text-pink-500">Languages</span>: {" "}
+                        {profile_data.languages}
                       </p>
                       <p className="mb-4 text-lg leading-relaxed text-gray-800">
-                        <span className="font-normal text-pink-500">Miscellenous</span>: Gaming, biking, outdoors
+                        <span className="font-normal text-pink-500">Miscellenous</span>: {" "}
+                        {profile_data.miscellenous}
                       </p>
                     </div>
                   </div>
@@ -112,3 +122,21 @@ export default function Home() {
 
   )
 }
+
+export async function getServerSideProps(context) {
+  try {
+    const res = await fetch('http://localhost:3000/api/profile_data')
+    const data = await res.json()
+    console.log('data: ', res, data)
+
+    if (data && data.length == 1) {
+      const profile_data = data.data.at(0)
+      return { props: { profile_data }}
+    }
+    return { error }
+  } catch (error) {
+    return { error }
+  }
+}
+
+export default Home
