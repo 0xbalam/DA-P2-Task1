@@ -1,6 +1,9 @@
 import mongoose from 'mongoose'
 
-const ProfileSchema = new mongoose.Schema({
+const { Schema } = mongoose;
+mongoose.Promise = global.Promise;
+
+const ProfileSchema = new Schema({
     username: String,
     profession: String,
     blockchains: String,
@@ -10,4 +13,4 @@ const ProfileSchema = new mongoose.Schema({
     miscellenous: String
 })
 
-module.exports = mongoose.model.User || mongoose.model('Profile', ProfileSchema)
+module.exports = mongoose.models['Profile'] || mongoose.model('Profile', ProfileSchema)

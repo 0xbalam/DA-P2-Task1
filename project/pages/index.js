@@ -127,9 +127,8 @@ export async function getServerSideProps(context) {
   try {
     const res = await fetch('http://localhost:3000/api/profile_data')
     const data = await res.json()
-    console.log('data: ', res, data)
 
-    if (data && data.length == 1) {
+    if (data.data && data.data.length == 1) {
       const profile_data = data.data.at(0)
       return { props: { profile_data }}
     }
