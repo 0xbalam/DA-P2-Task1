@@ -44,6 +44,7 @@ export async function getServerSideProps(context) {
     const response = await fetch(endpoint, options)
     const data = await response.json()
     const profilesData = data.data
+    console.error('profile: ', profilesData)
     return { props: { profilesData }}
   } catch (error) {
     return { error }
