@@ -8,9 +8,7 @@ const ProfileSchema = new Schema({
     profession: String,
     blockchains: String,
     membership: String,
-    summary: String,
-    languages: String,
-    miscellenous: String
+    summary: String
 })
 
 module.exports = mongoose.models['Profile'] || mongoose.model('Profile', ProfileSchema)
