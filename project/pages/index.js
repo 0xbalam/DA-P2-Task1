@@ -1,141 +1,51 @@
 import Head from 'next/head'
-import Image from 'next/image'
+import Link from 'next/link'
 import styles from '../styles/Home.module.css'
+import Header from '../components/Header'
 
-const Home = ({ profile_data, error }) => {
+import Profile from '../components/Profile'
 
-  if (error) {
-    return <div>An error occured: {error.message}</div>
-  }
+const HomeIndex = ({ profileData }) => {
 
-  if (!profile_data) {
-    return <div>No profile data</div>
-  }
 
   return (
     <>
       <Head>
-        <title>0xBalams Web3 Profile</title>
-        <meta name="description" content="Profile page" />
-        <link rel="icon" href="/favicon.ico" />
+        <title>Home page</title>
+        <meta name='description' content='Homepage' />
+        <link rel='icon' href='/favicon.ico' />
       </Head>
 
-      <main className="profile-page">
-      <section className="relative block" style={{ height: "500px" }}>
-          <div className="absolute top-0 w-full h-full bg-center bg-cover"
-            style={{
-              backgroundImage:
-                "url('https://images.unsplash.com/photo-1499336315816-097655dcfbda?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2710&q=80')"
-            }}>
-            <span id="blackOverlay"
-              className="w-full h-full absolute opacity-50 bg-black">
-            </span>
+      <Header/>
+      
+      <section className='relative py-60 bg-gray-600'>
+        <div className='flex flex-wrap justify-center'>
+            <Link href='/add_profile' passHref>
+                <div className='py-6 px-3 mt-32 sm:mt-0'>
+                  <button
+                    className='bg-pink-500 active:bg-pink-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1'
+                    type='button'
+                    style={{ transition: 'all .15s ease' }}>
+                    Add profile
+                  </button>
+                </div>
+              </Link>
           </div>
-          <div
-            className="top-auto bottom-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden"
-            style={{ height: "70px" }}
-          >
-            <svg
-              className="absolute bottom-0 overflow-hidden"
-              xmlns="http://www.w3.org/2000/svg"
-              preserveAspectRatio="none"
-              version="1.1"
-              viewBox="0 0 2560 100"
-              x="0"
-              y="0"
-            >
-              <polygon
-                className="text-gray-300 fill-current"
-                points="2560 0 2560 100 0 100"
-              ></polygon>
-            </svg>
-          </div>
-        </section>
-
-        <section className="relative py-16 bg-gray-300">
-          <div className="container mx-auto px-4">
-            <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-xl rounded-lg -mt-64">
-              <div className="px-6">
-                <div className="flex flex-wrap justify-center">
-                  <div className="relative">
-                    <Image className="shadow-xl rounded-full h-auto align-middle border-none absolute -m-16 -ml-20 lg:-ml-16"
-                      width={152} height={152}
-                      src="/pfp.jpg"
-                      alt="PFP" />
-                  </div>
-                </div>
-                <div className="text-center mt-12">
-                  <h3 className="text-4xl font-semibold leading-normal mb-2 text-gray-800 mb-2"> {" "}
-                    {profile_data.username}
-                  </h3>
-                  <div className="text-sm leading-normal mt-0 mb-2 text-gray-500 font-bold uppercase">
-                    <i className="fas fa-map-marker-alt mr-2 text-lg text-gray-500"></i>{" "}
-                    {profile_data.profession}
-                  </div>
-                  <div className="mb-2 text-gray-700 mt-10">
-                    <i className="fas fa-briefcase mr-2 text-lg text-gray-500"></i>
-                    {profile_data.membership}
-                  </div>
-                  <div className="mb-2 text-gray-700">
-                    <i className="fas fa-university mr-2 text-lg text-gray-500"></i>
-                    {profile_data.blockchains}
-                  </div>
-                </div>
-                <div className="mt-10 py-10 border-t border-gray-300 text-center">
-                  <div className="flex flex-wrap justify-center">
-                    <div className="w-full lg:w-9/12 px-4">
-                      <p className="mb-4 text-lg leading-relaxed text-gray-800">
-                        <span className="font-normal text-pink-500">Summary</span>: {" "}
-                        {profile_data.summary}
-                      </p>
-                      <p className="mb-4 text-lg leading-relaxed text-gray-800">
-                        <span className="font-normal text-pink-500">Languages</span>: {" "}
-                        {profile_data.languages}
-                      </p>
-                      <p className="mb-4 text-lg leading-relaxed text-gray-800">
-                        <span className="font-normal text-pink-500">Miscellenous</span>: {" "}
-                        {profile_data.miscellenous}
-                      </p>
-                    </div>
-                  </div>
-                </div>
+          <div className='flex flex-wrap justify-center'>
+            <Link href='/profiles' passHref>
+              <div className='py-6 px-3 mt-32 sm:mt-0'>
+                <button
+                  className='bg-pink-500 active:bg-pink-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1'
+                  type='button'
+                  style={{ transition: 'all .15s ease' }}>
+                  View profiles
+                </button>
               </div>
-            </div>
+            </Link>
           </div>
-        </section>
-
-      </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <span className={styles.logo}>
-            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-          </span>
-        </a>
-      </footer>
+      </section>
     </>
-
   )
 }
 
-export async function getServerSideProps(context) {
-  try {
-    const res = await fetch('http://localhost:3000/api/profile_data')
-    const data = await res.json()
-
-    if (data.data && data.data.length == 1) {
-      const profile_data = data.data.at(0)
-      return { props: { profile_data }}
-    }
-    return { error }
-  } catch (error) {
-    return { error }
-  }
-}
-
-export default Home
+export default HomeIndex
