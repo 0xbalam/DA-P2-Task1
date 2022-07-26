@@ -37,7 +37,7 @@ const ProfilesIndex = ({ profilesData, error }) => {
 
 export async function getServerSideProps(context) {
   try {
-    const endpoint = '/api/profile_data'
+    const endpoint = 'https://da-p2-task1-six.vercel.app/api/profile_data'
     const options = {
         method: 'GET'
     }
