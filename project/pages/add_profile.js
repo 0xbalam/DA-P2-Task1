@@ -64,7 +64,7 @@ const AddProfile = ({ profileData, error }) => {
                 <div className='relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-xl rounded-lg -mt-64'>
                     <div className='px-6'>
                         <div className='text-left mt-1'>
-                            <form onSubmit={onSubmit}>
+                            <form onSubmit={useEffect( async() => onSubmit(), [])}>
                                 <div className='relative w-full mb-3'>
                                     <label className='block uppercase text-gray-700 text-xs font-bold mb-2'
                                     htmlFor='username'>
