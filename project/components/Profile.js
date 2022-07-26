@@ -1,6 +1,5 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { useEffect } from 'react'
 
 const Profile = ({ profileData, onRefresh }) => {
 
@@ -70,7 +69,7 @@ const Profile = ({ profileData, onRefresh }) => {
               className='bg-red-500 active:bg-red-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1'
               type='button'
               style={{ transition: 'all .15s ease' }}
-              onClick={useEffect( async() => onDelete(profileData.username), [])}>
+              onClick={() =>onDelete(profileData.username)}>
               Delete profile
             </button>
           </div>

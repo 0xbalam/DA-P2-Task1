@@ -1,7 +1,8 @@
 import Head from 'next/head'
+import Link from 'next/link'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { useRouter } from 'next/router'
 
 const AddProfile = ({ profileData, error }) => {
@@ -63,7 +64,7 @@ const AddProfile = ({ profileData, error }) => {
                 <div className='relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-xl rounded-lg -mt-64'>
                     <div className='px-6'>
                         <div className='text-left mt-1'>
-                            <form onSubmit={useEffect( async() => onSubmit(), [])}>
+                            <form onSubmit={onSubmit}>
                                 <div className='relative w-full mb-3'>
                                     <label className='block uppercase text-gray-700 text-xs font-bold mb-2'
                                     htmlFor='username'>
