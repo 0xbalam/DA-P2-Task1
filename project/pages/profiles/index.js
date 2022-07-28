@@ -31,7 +31,7 @@ const ProfilesIndex = () => {
     setIsLoading(false)
   }, [needRefresh])
 
-  function renderProfileHomeIndex() {
+  function renderProfilesIndex() {
     return (
       <>
       <section className='relative py-72 bg-gray-600'>
@@ -57,7 +57,7 @@ const ProfilesIndex = () => {
 
         <LoadingSpinner isActive={isLoading}/> 
 
-        {renderProfileHomeIndex()}
+        {renderProfilesIndex()}
     </>
   )
 }

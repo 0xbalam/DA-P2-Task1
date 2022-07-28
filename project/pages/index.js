@@ -8,7 +8,7 @@ const HomeIndex = () => {
   const renderAppHomeIndex = (profileata) => {
     return (
       <>
-      <section className='relative py-60 bg-gray-600'>
+      <section className='relative py-60 bg-gray-600 h-full'>
       <div className='flex flex-wrap justify-center'>
           <Link href='/add_profile' passHref>
               <div className='py-6 px-3 mt-32 sm:mt-0'>
