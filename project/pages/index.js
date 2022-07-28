@@ -2,6 +2,7 @@ import Head from 'next/head'
 import Link from 'next/link'
 import '../styles/Home.module.css'
 import Header from '../components/Header'
+import NavBar from '../components/NavBar'
 
 const HomeIndex = () => {
   const renderAppHomeIndex = (profileata) => {
@@ -45,7 +46,10 @@ const HomeIndex = () => {
         <link rel='icon' href='/favicon.ico' />
       </Head>
 
-      <Header/>
+      <div>
+        <NavBar/>
+        <Header/>
+      </div>
       
       {renderAppHomeIndex()}
     </>

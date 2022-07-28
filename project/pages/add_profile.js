@@ -3,6 +3,7 @@ import Header from '../components/Header'
 import { useState } from 'react'
 import { useRouter } from 'next/router'
 import LoadingSpinner from '../components/LoadingSpinner'
+import NavBar from '../components/NavBar'
 
 const AddProfile = ({ profileData, error }) => {
     const [username, setUsername] = useState('')
@@ -64,11 +65,14 @@ const AddProfile = ({ profileData, error }) => {
             <link rel='icon' href='/favicon.ico' />
         </Head>
 
-        <Header></Header>
+        <div>
+            <NavBar/>
+            <Header/>
+        </div>
 
         <LoadingSpinner isActive={isLoading}/> 
         
-        <section className='relative py-60 bg-gray-600'>
+        <section className='relative py-82 bg-gray-600'>
             <div className='container mx-auto px-4'>
                 <div className='relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-xl rounded-lg -mt-64'>
                     <div className='px-6'>

@@ -3,6 +3,7 @@ import Header from '../../components/Header'
 import LoadingSpinner from '../../components/LoadingSpinner'
 import Profiles from '../../components/Profiles'
 import ProfileNotFound from '../../components/ProfileNotFound'
+import NavBar from '../../components/NavBar'
 import { useEffect, useState } from 'react'
 import { set } from 'mongoose'
 
@@ -33,7 +34,7 @@ const ProfilesIndex = () => {
   function renderProfileHomeIndex() {
     return (
       <>
-      <section className='relative py-60 bg-gray-600'>
+      <section className='relative py-72 bg-gray-600'>
         <div className='flex flex-wrap justify-center'>
           { profilesData.length > 0 ? <Profiles profilesData={profilesData} setIsLoading={setIsLoading} setNeedRefresh={setNeedRefresh}/> : <ProfileNotFound/> }
         </div>
@@ -49,7 +50,10 @@ const ProfilesIndex = () => {
         <link rel='icon' href='/favicon.ico' />
         </Head>
 
-        <Header/>
+        <div>
+          <NavBar/>
+          <Header/>
+        </div>
 
         <LoadingSpinner isActive={isLoading}/> 
 
