@@ -1,9 +1,8 @@
 import Head from 'next/head'
-import Link from 'next/link'
 import Header from '../components/Header'
-import Footer from '../components/Footer'
 import { useState } from 'react'
 import { useRouter } from 'next/router'
+import LoadingSpinner from '../components/LoadingSpinner'
 
 const AddProfile = ({ profileData, error }) => {
     const [username, setUsername] = useState('')
@@ -12,12 +11,18 @@ const AddProfile = ({ profileData, error }) => {
     const [membership, setMembership] = useState('')
     const [summary, setSummary] = useState('')
 
+    const [isLoading, setIsLoading] = useState(false)
+
     const router = useRouter()
 
     const onSubmit = async (e) => {
         e.preventDefault()
+
+        setIsLoading(true)
+
         if (!username) {
             alert('Please add a username')
+            setIsLoading(false)
             return
         }
 
@@ -42,10 +47,12 @@ const AddProfile = ({ profileData, error }) => {
         const result = await response.json()
         console.log(result)
         if (!result.success) {
-            alert('Profile already exists')
+            alert('Error please tra again')
+            setIsLoading(true)
             return
         }
 
+        setIsLoading(true)
         router.push('/profiles')
     }
 
@@ -59,7 +66,8 @@ const AddProfile = ({ profileData, error }) => {
 
         <Header></Header>
 
-
+        <LoadingSpinner isActive={isLoading}/> 
+        
         <section className='relative py-60 bg-gray-600'>
             <div className='container mx-auto px-4'>
                 <div className='relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-xl rounded-lg -mt-64'>

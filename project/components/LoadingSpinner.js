@@ -1,10 +1,15 @@
 import '../styles/Home.module.css'
 
-const LoadingSpinner = () => {
+const LoadingSpinner = ({ isLoading }) => {
     return (
-        <div className="spinner-container">
-            <div className="loading-spinner"></div>
-        </div>
+        <>
+            {isLoading ?  
+                <div className="spinner-container">
+                    <div className="loading-spinner"></div>
+                </div> :
+                <></>
+            }
+        </>
     )
 }
 

@@ -1,10 +1,10 @@
 import Image from 'next/image'
 import Link from 'next/link'
 
-const Profile = ({ profileData, isLoading, onRefresh, onLoading }) => {
+const Profile = ({ profileData, setIsLoading, setNeedRefresh }) => {
 
   async function onDelete (usernameToDelete ) {
-    onLoading(true)
+    setIsLoading(true)
 
     try {
       const data = JSON.stringify({username: usernameToDelete})
@@ -19,14 +19,14 @@ const Profile = ({ profileData, isLoading, onRefresh, onLoading }) => {
       }
       const res = await fetch(endpoint, options)
       if (res.status == 204) {
-        onRefresh()
-        onLoading(false)
+        setNeedRefresh(true)
+        setIsLoading(false)
       } else {
         alert('Failure. Try again.')
-        onLoading(false)
+        setIsLoading(false)
       }
     } catch (error) {
-      onLoading(false)
+      setIsLoading(false)
       return { error }
     }
   }
@@ -74,8 +74,7 @@ const Profile = ({ profileData, isLoading, onRefresh, onLoading }) => {
               className='bg-red-500 active:bg-red-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1'
               type='button'
               style={{ transition: 'all .15s ease' }}
-              onClick={() =>onDelete(profileData.username)}
-              disabled={isLoading}>
+              onClick={() =>onDelete(profileData.username)}>
               Delete profile
             </button>
           </div>
